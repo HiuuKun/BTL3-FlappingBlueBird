@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 72035742}
   m_Layer: 0
   m_Name: ColossalCrow_Idle Weak_00
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2117,10 +2117,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: statues_aseprite_4
       objectReference: {fileID: 0}
-    - target: {fileID: 1800994363315469392, guid: d5daa5be723fe83479441a7b832060bf, type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 1800994363315469398, guid: d5daa5be723fe83479441a7b832060bf, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2164,10 +2160,6 @@ PrefabInstance:
     - target: {fileID: 1800994363315469398, guid: d5daa5be723fe83479441a7b832060bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996869259694858144, guid: d5daa5be723fe83479441a7b832060bf, type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5daa5be723fe83479441a7b832060bf, type: 3}
@@ -2586,7 +2578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5336758165290499428, guid: 0e91ff937b7df3047ae48b64408616dc, type: 3}
       propertyPath: m_TagString
-      value: Obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e91ff937b7df3047ae48b64408616dc, type: 3}

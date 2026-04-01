@@ -12,7 +12,6 @@ public class BirdController : MonoBehaviour
     public float maxFallSpeed = -8f;
 
     private Rigidbody2D rb;
-    //private Animator animator;
     private bool isThrusting;
     private bool isDead;
     public GhostTrail ghostTrail;
@@ -61,19 +60,22 @@ public class BirdController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isDead = true;
-        rb.velocity = Vector2.zero;
-        birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Death);
+        if (isDead) return; // Prevent multiple triggers
+
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            isDead = true;
+            rb.velocity = Vector2.zero;
+            rb.simulated = false; // Fix #1: Stop physics immediately so you don't drop
+            birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Death);
+
+            // Trigger the UI immediately
             FindObjectOfType<GameManager>().GameOver(); 
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Coin"))
-            return;
-
+        if (!collision.CompareTag("Coin")) return;
         experience += coinExperience;
         Destroy(collision.gameObject);
     }
