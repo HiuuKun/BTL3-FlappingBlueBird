@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -69,10 +70,21 @@ public class BirdController : MonoBehaviour
             rb.simulated = false; // Fix #1: Stop physics immediately so you don't drop
             birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Death);
 
-            // Trigger the UI immediately
-            FindObjectOfType<GameManager>().GameOver(); 
+            StartCoroutine(DelayedGameOver());
         }
     }
+
+    private IEnumerator DelayedGameOver()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            gameManager.GameOver();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Coin")) return;

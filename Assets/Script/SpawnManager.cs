@@ -41,6 +41,11 @@ public class SpawnManager : MonoBehaviour
 
     private readonly List<Vector3> usedPositions = new List<Vector3>();
 
+    public static void ResetSpawnState()
+    {
+        firstSegmentSkipped = false;
+    }
+
     void Start()
     {
         if (skipSpawnOnFirstSegment && !firstSegmentSkipped)

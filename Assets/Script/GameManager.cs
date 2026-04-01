@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        SpawnManager.ResetSpawnState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
