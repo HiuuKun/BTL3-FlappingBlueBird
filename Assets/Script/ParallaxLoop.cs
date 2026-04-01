@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class ParallaxLoop : MonoBehaviour
 {
+    [Header("Base Speed")]
     public float speed = 2f;
     public int initialSegments = 4;
     public float extraLifeSeconds = 5f;
     public GameObject sourceObject;
+
+    [Header("Increase Speed")]
+    public bool increaseSpeed = false;
+    public float speedIncreasePerSecond = 0.2f;
+    public float maxSpeed = 10f;
 
     private class Segment
     {
@@ -53,8 +59,6 @@ public class ParallaxLoop : MonoBehaviour
 
         templateObject = gameObject;
 
-        // Important: for the manager segment, use the renderer from sourceObject,
-        // because that is the visible sprite whose bounds matter.
         AddSegment(transform, sourceRenderer, false, true);
 
         for (int i = 1; i < initialSegments; i++)
@@ -70,6 +74,12 @@ public class ParallaxLoop : MonoBehaviour
 
     void Update()
     {
+        if (increaseSpeed)
+        {
+            speed += speedIncreasePerSecond * Time.deltaTime;
+            speed = Mathf.Min(speed, maxSpeed);
+        }
+
         float move = speed * Time.deltaTime;
 
         for (int i = segments.Count - 1; i >= 0; i--)
@@ -146,8 +156,6 @@ public class ParallaxLoop : MonoBehaviour
         Transform t = clone.transform;
         t.rotation = transform.rotation;
         t.localScale = baseScale;
-
-        // Put it near the previous segment first
         t.position = prev.transform.position;
 
         SetMirror(t, mirrored);
@@ -159,7 +167,6 @@ public class ParallaxLoop : MonoBehaviour
             return t;
         }
 
-        // Snap left edge of new segment to right edge of previous segment
         float prevRight = prev.renderer.bounds.max.x;
         float newLeft = newRenderer.bounds.min.x;
         float offset = prevRight - newLeft;
@@ -195,11 +202,9 @@ public class ParallaxLoop : MonoBehaviour
         if (sourceObject == null)
             return null;
 
-        // Case 1: sourceObject is this same GameObject
         if (sourceObject == gameObject)
             return obj.GetComponent<SpriteRenderer>();
 
-        // Case 2: sourceObject is a child of this GameObject
         Transform sourcePath = sourceObject.transform;
         List<string> path = new List<string>();
 
@@ -222,8 +227,12 @@ public class ParallaxLoop : MonoBehaviour
 
     private void SetMirror(Transform target, bool mirror)
     {
-        Vector3 scale = baseScale;
-        scale.x = Mathf.Abs(scale.x) * (mirror ? -1f : 1f);
-        target.localScale = scale;
+        target.localScale = baseScale;
+
+        SpriteRenderer sr = GetRendererForSegment(target.gameObject);
+        if (sr != null)
+        {
+            sr.flipX = mirror;
+        }
     }
 }
