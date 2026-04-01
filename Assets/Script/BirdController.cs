@@ -64,6 +64,10 @@ public class BirdController : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
         birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Death);
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            FindObjectOfType<GameManager>().GameOver(); 
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
