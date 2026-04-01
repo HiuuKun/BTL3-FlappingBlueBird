@@ -206,5 +206,7 @@ MonoBehaviour:
   - {fileID: -889799492, guid: e1396d9d274d6964491bff7eb0b13764, type: 3}
   - {fileID: -576378931, guid: e1396d9d274d6964491bff7eb0b13764, type: 3}
   flyFps: 2
-  currentState: 0
+  deathFrames: []
+  deathFps: 10
+  currentState: 1
   loop: 1
