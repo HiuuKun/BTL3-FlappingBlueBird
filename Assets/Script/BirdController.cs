@@ -79,4 +79,16 @@ public class BirdController : MonoBehaviour
         experience += coinExperience;
         Destroy(collision.gameObject);
     }
+    public void ResetPlayer()
+    {
+        isDead = false;
+        transform.position = new Vector3(1.831f, 9.2742f, 0f);
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        rb.simulated = true;
+        if (birdSpriteAnimator != null)
+        {
+            birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Hover);
+        }
+    }
 }
