@@ -15,6 +15,7 @@ public class BirdController : MonoBehaviour
     [Header("Gravity Item Settings")]
     public bool isGravityMode = false;
     public float gravityModeDuration = 10f;
+    public float GravityModeRemainingTime { get; private set; }
     private float defaultGravityScale;
 
     private Rigidbody2D rb;
@@ -152,11 +153,18 @@ public class BirdController : MonoBehaviour
     private IEnumerator GravityModeRoutine()
     {
         isGravityMode = true;
+        GravityModeRemainingTime = gravityModeDuration;
         
         if (birdSpriteAnimator != null)
             birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Fly);
 
-        yield return new WaitForSeconds(gravityModeDuration);
+        while (GravityModeRemainingTime > 0f)
+        {
+            GravityModeRemainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        GravityModeRemainingTime = 0f;
 
         isGravityMode = false;
         
@@ -176,6 +184,7 @@ public class BirdController : MonoBehaviour
         rb.simulated = true;
 
         isGravityMode = false;
+        GravityModeRemainingTime = 0f;
         if (defaultGravityScale != 0) rb.gravityScale = Mathf.Abs(defaultGravityScale);
 
         Vector3 scale = transform.localScale;

@@ -100,7 +100,7 @@ The game features a sophisticated infinite parallax scrolling background that cr
 - License: CC0 (Public Domain)
 - Usage: Player character sprite and animations
 
-**Crown/Moving Obstacle Asset**
+**Crow/Moving Obstacle Asset**
 
 - Creator: aekashics (librarium-static-batch-megapack)
 - Source: http://www.akashics.moe/
@@ -116,6 +116,11 @@ The game features a sophisticated infinite parallax scrolling background that cr
 - Creator: odgardian
 - Source: https://odgardian.itch.io/medieval-house-set-statues
 - Usage: Environmental obstacles and decorative elements
+
+**Reverse Symbol**
+
+- Source: AI generated
+- Usage: Gravity debuff/reverse-gravity indicator icon
 
 ### Audio & Other Assets
 
