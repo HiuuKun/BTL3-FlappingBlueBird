@@ -2727,15 +2727,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459986, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: thrustForce
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459986, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: maxFallSpeed
-      value: -2
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459986, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: maxRiseSpeed
-      value: 2
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459987, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: m_Constraints
@@ -2743,7 +2743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459987, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: m_GravityScale
-      value: 0.4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5643315211956459990, guid: 90e24164f2334e748a5dc8533e0dec4c, type: 3}
       propertyPath: m_RootOrder

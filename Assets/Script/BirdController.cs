@@ -8,9 +8,9 @@ public class BirdController : MonoBehaviour
     public int experience = 0;
     public int coinExperience = 10;
     [Header("Movement")]
-    public float thrustForce = 10f;
-    public float maxRiseSpeed = 4f;
-    public float maxFallSpeed = -8f;
+    public float thrustForce = 50f;
+    public float maxRiseSpeed = 3.5f;
+    public float maxFallSpeed = -3.5f;
 
     private Rigidbody2D rb;
     private bool isThrusting;
