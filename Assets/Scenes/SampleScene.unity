@@ -2904,12 +2904,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968971833751748631, guid: eb8680e636e815a43bd7800597411d0e, type: 3}
       propertyPath: objectPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5968971833751748631, guid: eb8680e636e815a43bd7800597411d0e, type: 3}
       propertyPath: objectPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 72035741}
+    - target: {fileID: 5968971833751748631, guid: eb8680e636e815a43bd7800597411d0e, type: 3}
+      propertyPath: objectPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 564676113538871025, guid: cff504780c8e1f44aab39bd3172cc722, type: 3}
     - target: {fileID: 5968971833751748631, guid: eb8680e636e815a43bd7800597411d0e, type: 3}
       propertyPath: topPillarPrefabs.Array.size
       value: 2
