@@ -7,15 +7,18 @@ A challenging 2D flyer game where players navigate a bird through procedurally s
 ## Game Controls
 
 ### Thrust/Rise
+
 - **Spacebar** – Hold to thrust the bird upward
 - **Left Mouse Button** – Hold to thrust the bird upward
 - **Touch Screen** – Touch to thrust the bird upward
 
 ### Menus
+
 - **Restart** – Click the restart button on the Game Over screen to play again
 - **Start Game** – Click the start button on the main menu
 
 ### Movement Mechanics
+
 - **Falling**: The bird continuously falls due to gravity when no input is active
 - **Rising**: Holding any thrust input applies upward force (movement speed capped at a maximum rise speed)
 - **Free Fall**: Maximum fall speed is capped to prevent uncontrolled descents
@@ -29,15 +32,16 @@ The game features a sophisticated infinite parallax scrolling background that cr
 ### System Architecture
 
 #### **ParallaxLoop.cs** (Background Scrolling)
-   - Handles infinite scrolling of the scenic background sprite layer
-   - Creates and manages alternating mirrored segments as the player moves
-   - Each segment is spawned dynamically when the rightmost segment reaches a threshold
-   - Supports optional speed increase over time for difficulty scaling
-   - **Key Features:**
-     - Dynamic segment cloning with sprite mirroring
-     - Sprite rendering optimization
-     - Configurable speed, initial segments, and max speed
-     - Smooth infinite loop with seamless transitions
+
+- Handles infinite scrolling of the scenic background sprite layer
+- Creates and manages alternating mirrored segments as the player moves
+- Each segment is spawned dynamically when the rightmost segment reaches a threshold
+- Supports optional speed increase over time for difficulty scaling
+- **Key Features:**
+  - Dynamic segment cloning with sprite mirroring
+  - Sprite rendering optimization
+  - Configurable speed, initial segments, and max speed
+  - Smooth infinite loop with seamless transitions
 
 #### **How It Works**
 
@@ -64,6 +68,7 @@ The game features a sophisticated infinite parallax scrolling background that cr
    - Creates the illusion of infinite horizontal scrolling
 
 #### **Technical Parameters**
+
 - `speed`: Units per second the parallax layer scrolls
 - `initialSegments`: Number of segments spawned at start (determines buffer)
 - `extraLifeSeconds`: Grace period before destroying off-screen segments
@@ -72,6 +77,7 @@ The game features a sophisticated infinite parallax scrolling background that cr
 - `maxSpeed`: Maximum scrolling speed cap
 
 #### **Performance Optimization**
+
 - Segments outside the viewport are destroyed to reduce draw calls
 - Only active segments are updated in the Update loop
 - Null checks prevent errors from destroyed objects
@@ -83,31 +89,37 @@ The game features a sophisticated infinite parallax scrolling background that cr
 ### Visual Assets
 
 **Glacial Mountains Parallax Background**
+
 - Creator: vnitti
 - Source: https://vnitti.itch.io/glacial-mountains-parallax-background
 - License: As specified by creator
 - Usage: Multi-layer background scenery and parallax scrolling
 
 **Blue Bird Sprite**
+
 - Source: https://inmenus.itch.io/bird
 - License: CC0 (Public Domain)
 - Usage: Player character sprite and animations
 
 **Crown/Moving Obstacle Asset**
+
 - Creator: aekashics (librarium-static-batch-megapack)
 - Source: http://www.akashics.moe/
 
 **Collectable Coin**
+
 - Creator: laredgames
 - Source: https://laredgames.itch.io/gems-coins-free
 - Usage: In-game collectible coins for scoring
 
 **Statues**
+
 - Creator: odgardian
 - Source: https://odgardian.itch.io/medieval-house-set-statues
 - Usage: Environmental obstacles and decorative elements
 
 ### Audio & Other Assets
+
 - TextMesh Pro: Unity Technologies
 - Any other assets used are subject to their respective licenses
 
@@ -146,4 +158,7 @@ The game features a sophisticated infinite parallax scrolling background that cr
 
 ---
 
-*Last Updated: April 2026*
+## Credits
+
+- Background Music: "Butterflies and Bird" by Ketsa - [Free Music Archive](https://freemusicarchive.org/music/Ketsa/Given_Taken/Butterflies_and_Bird/)
+  _Last Updated: April 2026_
