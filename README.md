@@ -92,7 +92,6 @@ The game features a sophisticated infinite parallax scrolling background that cr
 
 - Creator: vnitti
 - Source: https://vnitti.itch.io/glacial-mountains-parallax-background
-- License: As specified by creator
 - Usage: Multi-layer background scenery and parallax scrolling
 
 **Blue Bird Sprite**
@@ -121,7 +120,7 @@ The game features a sophisticated infinite parallax scrolling background that cr
 ### Audio & Other Assets
 
 - TextMesh Pro: Unity Technologies
-- Any other assets used are subject to their respective licenses
+- Background Music: "Butterflies and Bird" by Ketsa - [Free Music Archive](https://freemusicarchive.org/music/Ketsa/Given_Taken/Butterflies_and_Bird/)
 
 ---
 
@@ -149,16 +148,3 @@ The game features a sophisticated infinite parallax scrolling background that cr
 
 ---
 
-## Development Notes
-
-- Built with Unity
-- Uses 2D physics and sprite-based rendering
-- Procedural obstacle generation with randomization
-- Persistent high score tracking via PlayerPrefs
-
----
-
-## Credits
-
-- Background Music: "Butterflies and Bird" by Ketsa - [Free Music Archive](https://freemusicarchive.org/music/Ketsa/Given_Taken/Butterflies_and_Bird/)
-  _Last Updated: April 2026_
