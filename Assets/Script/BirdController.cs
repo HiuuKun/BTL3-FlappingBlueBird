@@ -12,6 +12,11 @@ public class BirdController : MonoBehaviour
     public float maxRiseSpeed = 3.5f;
     public float maxFallSpeed = -3.5f;
 
+    [Header("Gravity Item Settings")]
+    public bool isGravityMode = false;
+    public float gravityModeDuration = 10f;
+    private float defaultGravityScale;
+
     private Rigidbody2D rb;
     private bool isThrusting;
     private bool isDead;
@@ -23,6 +28,9 @@ public class BirdController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         birdSpriteAnimator = GetComponentInChildren<SpriteFrameAnimator>();
         //animator = GetComponent<Animator>();
+
+        //save the default gravity scale when game start
+        defaultGravityScale = rb.gravityScale;
     }
 
     void Update()
@@ -33,15 +41,44 @@ public class BirdController : MonoBehaviour
             return;
         }
 
+        bool tapDown = Input.GetKeyDown(KeyCode.Space) ||
+                       Input.GetMouseButtonDown(0) ||
+                       (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
+
         isThrusting =
             Input.GetKey(KeyCode.Space) ||
             Input.GetMouseButton(0) ||
             Input.touchCount > 0;
-        if (ghostTrail != null) ghostTrail.isThrusting = isThrusting;
+
+        if (ghostTrail != null) ghostTrail.isThrusting = isThrusting && !isGravityMode;
+
         if (isThrusting)
             birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Fly);
         else
             birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Hover);
+
+
+        if (isGravityMode)
+        {
+            if (tapDown)
+            {
+                rb.gravityScale *= -1f; //reverse gravity
+
+                //reverse sprite
+                Vector3 scale = transform.localScale;
+                scale.y *= -1f;
+                transform.localScale = scale;
+            }
+        }
+        else
+        {
+            //norval mode
+            if (isThrusting)
+                birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Fly);
+            else
+                birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Hover);
+        }
+
     }
 
     void FixedUpdate()
@@ -50,12 +87,20 @@ public class BirdController : MonoBehaviour
 
         Vector2 velocity = rb.velocity;
 
-        if (isThrusting)
+        if (isThrusting && !isGravityMode)
         {
             velocity.y += thrustForce * Time.fixedDeltaTime;
         }
 
-        velocity.y = Mathf.Clamp(velocity.y, maxFallSpeed, maxRiseSpeed);
+        if (rb.gravityScale > 0)
+        {
+            velocity.y = Mathf.Clamp(velocity.y, maxFallSpeed, maxRiseSpeed);
+        }
+        else
+        {
+            velocity.y = Mathf.Clamp(velocity.y, -maxRiseSpeed, -maxFallSpeed);
+        }
+
         rb.velocity = velocity;
     }
 
@@ -87,10 +132,41 @@ public class BirdController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Coin")) return;
-        experience += coinExperience;
-        Destroy(collision.gameObject);
+        if (collision.CompareTag("Coin"))
+        {
+            experience += coinExperience;
+            Destroy(collision.gameObject);
+        }
+        else if (collision.CompareTag("GravityItem"))
+        {
+            Destroy(collision.gameObject); //delete item
+            
+            //activate gravity mode
+            if (!isGravityMode)
+            {
+                StartCoroutine(GravityModeRoutine());
+            }
+        }
     }
+
+    private IEnumerator GravityModeRoutine()
+    {
+        isGravityMode = true;
+        
+        if (birdSpriteAnimator != null)
+            birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Fly);
+
+        yield return new WaitForSeconds(gravityModeDuration);
+
+        isGravityMode = false;
+        
+        rb.gravityScale = Mathf.Abs(defaultGravityScale); 
+        
+        Vector3 scale = transform.localScale;
+        scale.y = Mathf.Abs(scale.y);
+        transform.localScale = scale;
+    }
+
     public void ResetPlayer()
     {
         isDead = false;
@@ -98,6 +174,14 @@ public class BirdController : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         rb.simulated = true;
+
+        isGravityMode = false;
+        if (defaultGravityScale != 0) rb.gravityScale = Mathf.Abs(defaultGravityScale);
+
+        Vector3 scale = transform.localScale;
+        scale.y = Mathf.Abs(scale.y);
+        transform.localScale = scale;
+
         if (birdSpriteAnimator != null)
         {
             birdSpriteAnimator.SetState(SpriteFrameAnimator.AnimState.Hover);
